@@ -35,6 +35,8 @@ ament_auto_package(INSTALL_TO_SHARE examples)
 # Test
 ##############################################################################
 
+set(BUILD_TESTING false)
+
 if(BUILD_TESTING)
     find_package(ament_cmake_gtest REQUIRED)
     set(TEST_NAME test_scan_filter_chain)
@@ -43,7 +45,7 @@ if(BUILD_TESTING)
     ament_target_dependencies(${TEST_NAME} rclcpp pluginlib)
     ament_add_test(
         ${TEST_NAME}
-        COMMAND 
+        COMMAND
             $<TARGET_FILE:${TEST_NAME}>
             --ros-args --params-file ${PROJECT_SOURCE_DIR}/test/${TEST_NAME}.yaml
             --gtest_output=xml:${RESULT_FILENAME}
